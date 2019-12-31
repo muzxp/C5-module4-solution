@@ -1,18 +1,18 @@
 (function () {
 'use strict';
 
-angular.module('ShoppingList')
-.service('ShoppingListService', ShoppingListService);
+angular.module('MenuApp')
+.service('MenuAppService', MenuAppService);
 
 
-ShoppingListService.$inject = ['$q', '$timeout']
-function ShoppingListService($q, $timeout) {
+MenuAppService.$inject = ['$q', '$timeout']
+function MenuAppService($q, $timeout) {
   var service = this;
 
-  // List of shopping items
+  // menu items
   var items = [];
 
-  // Pre-populate a no cookie list
+  // Pre-populate a no cookie xxx
   items.push({
     name: "Sugar",
     quantity: "2 bags",
