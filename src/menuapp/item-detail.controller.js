@@ -4,11 +4,10 @@
 angular.module('MenuApp')
 .controller('ItemDetailController', ItemDetailController);
 
-
-ItemDetailController.$inject = ['$stateParams', 'items'];
-function ItemDetailController($stateParams, items) {
+// 'item' is injected through state's resolve
+ItemDetailController.$inject = ['item']
+function ItemDetailController(item) {
   var itemDetail = this;
-  var item = items[$stateParams.itemId];
   itemDetail.name = item.name;
   itemDetail.quantity = item.quantity;
   itemDetail.description = item.description;

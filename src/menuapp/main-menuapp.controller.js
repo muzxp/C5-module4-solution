@@ -4,11 +4,10 @@
 angular.module('MenuApp')
 .controller('MainMenuAppController', MainMenuAppController);
 
-
-MainMenuAppController.$inject = ['MenuAppService', 'items'];
-function MainMenuAppController(MenuAppService, items) {
-  var mainmenu = this;
-  mainmenu.items = items;
+MainMenuAppController.$inject = ['items'];
+function MainMenuAppController(items) {
+  var mainMenu = this;
+  mainMenu.items = items;
   console.log("MainMenuAppController: ", items);
 }
 

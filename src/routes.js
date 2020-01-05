@@ -31,12 +31,20 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     }
   })
 
-  .state('mainApp.itemDetail', {
+  .state('itemDetail', {
     url: '/item-detail/{itemId}',
     templateUrl: 'src/menuapp/templates/item-detail.template.html',
-    controller: "ItemDetailController as itemDetail"
+    controller: "ItemDetailController as itemDetail",
+    resolve: {
+      item: ['$stateParams', 'MenuAppService',
+        function ($stateParams, MenuAppService) {
+          return MenuAppService.getItems()
+            .then(function (items) {
+              return items[$stateParams.itemId];
+            });
+        }]
+    }
   });
-
 }
 
 })();
