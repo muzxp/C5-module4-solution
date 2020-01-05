@@ -2,6 +2,11 @@
 <a ui-sref="mainApp">Categories</a> &lt;
 
 <span> {{ itemDetail.name }} </span>
-<div>Item name: {{ itemDetail.name }}</div>
-<div>Item quantity: {{ itemDetail.quantity }}</div>
-<div>Item description: {{ itemDetail.description }}</div>
+<h3> XXX {{ itemDetail.dishes[0].name }} </h3>
+
+<ul>
+  <li ng-repeat="item in itemDetail.dishes">
+      {{ item.name }} ||| 
+      Description={{ item.description }}
+  </li>
+</ul>

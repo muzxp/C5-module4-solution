@@ -2,46 +2,36 @@
 'use strict';
 
 angular.module('MenuApp')
-.service('MenuAppService', MenuAppService);
+.service('MenuAppService', MenuAppService)
+.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
 
-MenuAppService.$inject = ['$q', '$timeout']
-function MenuAppService($q, $timeout) {
+
+MenuAppService.$inject = ['$http', 'ApiBasePath'];
+function MenuAppService($http, ApiBasePath) {
   var service = this;
 
-  // menu items
-  var items = [];
-
-  // Pre-populate a no cookie xxx
-  items.push({
-    name: "Sugar",
-    quantity: "2 bags",
-    description: "Sugar used for baking delicious umm... baked goods."
-  });
-  items.push({
-    name: "flour",
-    quantity: "1 bags",
-    description: "High quality wheat flour. Mix it with water, sugar, 2 raw eggs."
-  });
-  items.push({
-    name: "Chocolate Chips",
-    quantity: "3 bags",
-    description: "Put these in the dough. No reason, really. Gotta store them somewhere!"
-  });
-
-  // Simulates call to server
   // Returns a promise, NOT items array directly
-  service.getItems = function () {
-    var deferred = $q.defer();
+  service.getMenuCategories = function () {
+    var response = $http({
+                    method: "GET",
+                    url: (ApiBasePath + "/categories.json")
+    });
 
-    // Wait 2 seconds before returning
-    $timeout(function () {
-      // deferred.reject(items);
-      deferred.resolve(items);
-    }, 800);
-
-    return deferred.promise;
+    return response;
   };
-}
 
+  service.getMenuForCategory = function (shortName) {
+    var response = $http({
+                    method: "GET",
+                    url: (ApiBasePath + "/menu_items.json"),
+                      params: {
+                        category: shortName
+                      }
+    });
+
+    return response;
+  };
+
+};
 })();
