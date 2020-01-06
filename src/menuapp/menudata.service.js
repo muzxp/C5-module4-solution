@@ -1,16 +1,16 @@
 (function () {
 'use strict';
 
-angular.module('MenuApp')
-.service('MenuAppService', MenuAppService)
+angular.module('data')
+.service('MenuDataService', MenuDataService)
 .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
 
-MenuAppService.$inject = ['$http', 'ApiBasePath'];
-function MenuAppService($http, ApiBasePath) {
+MenuDataService.$inject = ['$http', 'ApiBasePath'];
+function MenuDataService($http, ApiBasePath) {
   var service = this;
 
   // Returns a promise, NOT items array directly
-  service.getMenuCategories = function () {
+  service.getAllCategories = function () {
     var response = $http({
                     method: "GET",
                     url: (ApiBasePath + "/categories.json")
@@ -19,7 +19,7 @@ function MenuAppService($http, ApiBasePath) {
     return response;
   };
 
-  service.getMenuForCategory = function (shortName) {
+  service.getItemsForCategory = function (shortName) {
     var response = $http({
                     method: "GET",
                     url: (ApiBasePath + "/menu_items.json"),
