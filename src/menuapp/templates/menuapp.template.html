@@ -1,7 +1,6 @@
 <ul>
   <li ng-repeat="item in $ctrl.items"
       ui-sref="itemDetail({itemId: item.short_name})">
-      id={{ item.id }}  SN={{ item.short_name }} NAME={{ item.name }}
-<!-- console.log("xxx: ", items.data[0].id); -->
+      {{ item.id }} | {{ item.short_name }} | {{ item.name }}
   </li>
 </ul>

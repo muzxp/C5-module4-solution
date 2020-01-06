@@ -26,7 +26,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     controller: 'MainMenuAppController as mainApp',
     resolve: {
       items: ['MenuAppService', function (MenuAppService) {
-        return MenuAppService.getItems();
+        return MenuAppService.getMenuCategories();
       }]
     }
   })
@@ -38,13 +38,9 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     resolve: {
       item: ['$stateParams', 'MenuAppService',
         function ($stateParams, MenuAppService) {
-          return MenuAppService.getItems()
-            .then(function (items) {
-              return items[$stateParams.itemId];
-            });
-        }]
+          return MenuAppService.getMenuForCategory($stateParams.itemId);
+      }]
     }
   });
 }
-
 })();
