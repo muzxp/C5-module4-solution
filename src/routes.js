@@ -22,11 +22,11 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   // Premade menu page
   .state('mainApp', {
     url: '/main-app',
-    templateUrl: 'src/menuapp/templates/main-menuapp.template.html',
+    templateUrl: 'src/menuapp/templates/main-categories.template.html',
     controller: 'MainMenuAppController as mainApp',
     resolve: {
-      items: ['MenuAppService', function (MenuAppService) {
-        return MenuAppService.getMenuCategories();
+      items: ['MenuDataService', function (MenuDataService) {
+        return MenuDataService.getAllCategories();
       }]
     }
   })
@@ -36,9 +36,9 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     templateUrl: 'src/menuapp/templates/item-detail.template.html',
     controller: "ItemDetailController as itemDetail",
     resolve: {
-      item: ['$stateParams', 'MenuAppService',
-        function ($stateParams, MenuAppService) {
-          return MenuAppService.getMenuForCategory($stateParams.itemId);
+      item: ['$stateParams', 'MenuDataService',
+        function ($stateParams, MenuDataService) {
+          return MenuDataService.getItemsForCategory($stateParams.itemId);
       }]
     }
   });
