@@ -9,7 +9,7 @@ ItemDetailController.$inject = ['item']
 function ItemDetailController(item) {
   var itemDetail = this;
   //console.log("item-detail.controller1: ", item);
-  console.log("item-detail.controller2: ", item.data.menu_items);
+  console.log("item-detail.controller: ", item.data.menu_items);
   itemDetail.dishes = item.data.menu_items;
   itemDetail.category_name = item.data.category.name
   console.log("# of dishes: ", itemDetail.dishes.length);
